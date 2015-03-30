@@ -1,0 +1,74 @@
+! vim: set ft=xdefaults:
+
+! XFT - Fuentes
+!----------------------------------------------------------------------
+
+Xft.dpi: 96
+Xft.antialias: 1
+Xft.rgba: rgb
+Xft.autohint: 0
+Xft.lcdfilter: lcddefault
+Xft.hinting: 1
+Xft.hintstyle: hintfull
+
+Xcursor.theme:	 Neutral
+*font: -xos4-terminesspowerline-medium-r-normal--12-120-72-72-c-60-iso10646-1
+
+
+! Hybrid Terminal Colours. Uses the palette from Tomorrow-Night:
+! https://github.com/chriskempson/tomorrow-theme/blob/master/vim/colors/Tomorrow-Night.vim
+! vim: ft=xdefaults
+ 
+*background: #1D1F21
+*foreground: #C5C8C6
+! black
+*color0: #282A2E
+*color8: #373B41
+! red
+*color1: #A54242
+*color9: #CC6666
+! green
+*color2: #8C9440
+*color10: #B5BD68
+! yellow
+*color3: #DE935F
+*color11: #F0C674
+! blue
+*color4: #5F819D
+*color12: #81A2BE
+! magenta
+*color5: #85678F
+*color13: #B294BB
+! cyan
+*color6: #5E8D87
+*color14: #8ABEB7
+! white
+*color7: #707880
+*color15: #C5C8C6
+
+
+! URXVT
+!----------------------------------------------------------------------
+! Colores
+! bold, italic, underline
+URxvt.colorBD: #B5BD68
+URxvt.colorIT: #B294BB
+URxvt.colorUL: #81A2BE
+
+URxvt.letterSpace: -1
+URxvt*font: xft:DejaVu Sans Mono for Powerline:size=10
+URxvt*boldFont: xft:DejaVu Sans Mono for Powerline:size=10
+URxvt*italicFont: xft:DejaVu Sans Mono for Powerline:size=10
+URxvt*bolditalicFont: xft:DejaVu Sans Mono for Powerline:size=10
+
+
+! Varios
+URxvt.depth: 32
+URxvt*scrollBar: false
+URxvt.urgentOnBell: True
+URxvt.visualBell: False
+URxvt*saveLines: 1024
+URxvt*mouseWheelScrollPage: true
+URxvt.keysym.Shift-Control-V: perl:clipboard:paste
+URxvt.iso14755: False
+URxvt.perl-ext-common: default,clipboard
