@@ -197,7 +197,7 @@ bar {
         font pango:DejaVu Mono Sans for Powerline, FontAwesome 10
         colors {
             separator #2b5b84
-            background #1D1F21
+            background #0a0f14
             statusline #268bd2
             #                  BORDER     BACKGROUND TEXT
             active_workspace   #777ad0    #777ad0    #fdf6e3

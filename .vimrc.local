@@ -1,2 +1,4 @@
 let g:hybrid_use_Xresources = 1
-colorscheme hybrid
+set nospell
+colorscheme gotham
+let g:airline_theme = 'gotham'
