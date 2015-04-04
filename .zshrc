@@ -81,6 +81,7 @@ source $ZSH/oh-my-zsh.sh
 #if [ -e /usr/share/terminfo/x/xterm-256color ] && [ "$COLORTERM" == "xfce4-terminal" ]; then
 export TERM=xterm-256color
 #fi
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" 
 
 export PATH="$PATH:$HOME/npm/bin"
 export PATH=$PATH:/usr/local/bin/pa-volume/bin/
