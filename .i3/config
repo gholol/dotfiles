@@ -22,7 +22,7 @@ font pango:DejaVu Sans Mono for Powerline, FontAwesome 10
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec urxvt  # i3-sensible-terminal
+bindsym $mod+Return exec urxvt
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -161,7 +161,8 @@ bindsym $mod+Shift+0 move container to workspace 10
 #########################################################################
 
 # custom bindsym
-bindsym $mod+Shift+s exec /home/kamo/i3scripts/swap-workspace.py
+bindsym $mod+Shift+s exec $HOME/i3scripts/swap-workspace.py
+bindsym $mod+Shift+w exec $HOME/i3scripts/i3-exit
 
 # assigns
 assign [class="Thunderbird"] $WS4
@@ -169,10 +170,11 @@ assign [class="Chromium-browser"] $WS3
 
 # xfce4 stuff
 for_window [class="Xfce4-notifyd"] floating enable; border none; focus mode_toggle
+for_window [class="I3-exit"] floating enable; border none; focus mode_toggle
 #for_window [class="Chromium-browser"]
 
 # Wallpaper setup
-# exec --no-startup-id feh --bg-scale /home/kamo/Obrazy/Overwerk.png
+# exec --no-startup-id feh --bg-scale $HOME/Obrazy/Overwerk.png
 exec --no-startup-id nitrogen --restore
 
 # auto startup
