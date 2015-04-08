@@ -7,7 +7,6 @@ pygtk.require('2.0')
 import gtk
 import os
 import getpass
-import time
 
 prefix = '$HOME/.i3/'
 
@@ -39,36 +38,40 @@ class i3_exit:
     def suspend_action(self,btn):
         self.disable_buttons()
         os.system(prefix + "i3-lock")
-        os.system("dbus-send --system --print-reply \
-                --dest=\"org.freedesktop.UPower\"   \
-                /org/freedesktop/UPower             \
-                org.freedesktop.UPower.Suspend")
+        os.system("dbus-send --system --print-reply            \
+                  --dest=org.freedesktop.login1                \
+                  /org/freedesktop/login1                      \
+                  \"org.freedesktop.login1.Manager.Suspend\"   \
+                  boolean:true")
         gtk.main_quit()
 
     def hibernate_action(self,btn):
         self.disable_buttons()
         os.system(prefix + "i3-lock")
-        os.system("dbus-send --system --print-reply \
-                --dest=\"org.freedesktop.UPower\"   \
-                /org/freedesktop/UPower             \
-                org.freedesktop.UPower.Hibernate")
+        os.system("dbus-send --system --print-reply            \
+                  --dest=org.freedesktop.login1                \
+                  /org/freedesktop/login1                      \
+                  \"org.freedesktop.login1.Manager.Hibernate\" \
+                  boolean:true")
         gtk.main_quit()
 
     def reboot_action(self,btn):
         self.disable_buttons()
         os.system(prefix + 'i3-pre-exit')
-        os.system("dbus-send --system --print-reply   \
-                --dest=\"org.freedesktop.ConsoleKit\" \
-                /org/freedesktop/ConsoleKit/Manager   \
-                org.freedesktop.ConsoleKit.Manager.Restart")
+        os.system("dbus-send --system --print-reply         \
+                  --dest=org.freedesktop.login1             \
+                  /org/freedesktop/login1                   \
+                  \"org.freedesktop.login1.Manager.Reboot\" \
+                  boolean:true")
 
     def shutdown_action(self,btn):
         self.disable_buttons()
         os.system(prefix + 'i3-pre-exit')
-        os.system("dbus-send --system --print-reply   \
-                --dest=\"org.freedesktop.ConsoleKit\" \
-                /org/freedesktop/ConsoleKit/Manager   \
-                org.freedesktop.ConsoleKit.Manager.Stop")
+        os.system("dbus-send --system --print-reply            \
+                  --dest=org.freedesktop.login1                \
+                  /org/freedesktop/login1                      \
+                  \"org.freedesktop.login1.Manager.PowerOff\"  \
+                  boolean:true")
 
     def create_window(self):
         self.window = gtk.Window()
@@ -84,11 +87,11 @@ class i3_exit:
         windowicon = self.window.render_icon(gtk.STOCK_QUIT, gtk.ICON_SIZE_MENU)
         self.window.set_icon(windowicon)
 
-        
+
         #Create HBox for buttons
         self.button_box = gtk.VBox()
         self.button_box.show()
-        
+
         #Cancel button
         self.cancel = gtk.Button(stock = gtk.STOCK_CANCEL)
         self.cancel.set_border_width(4)
@@ -102,45 +105,45 @@ class i3_exit:
         self.lock.connect("clicked", self.lock_action)
         self.button_box.pack_start(self.lock)
         self.lock.show()
-        
+
         #Logout button
         self.logout = gtk.Button("Log _out")
         self.logout.set_border_width(4)
         self.logout.connect("clicked", self.logout_action)
         self.button_box.pack_start(self.logout)
         self.logout.show()
-        
+
         #Suspend button
         self.suspend = gtk.Button("_Suspend")
         self.suspend.set_border_width(4)
         self.suspend.connect("clicked", self.suspend_action)
         self.button_box.pack_start(self.suspend)
         self.suspend.show()
-        
+
         #Hibernate button
         self.hibernate = gtk.Button("_Hibernate")
         self.hibernate.set_border_width(4)
         self.hibernate.connect("clicked", self.hibernate_action)
         self.button_box.pack_start(self.hibernate)
         self.hibernate.show()
-        
+
         #Reboot button
         self.reboot = gtk.Button("_Reboot")
         self.reboot.set_border_width(4)
         self.reboot.connect("clicked", self.reboot_action)
         self.button_box.pack_start(self.reboot)
         self.reboot.show()
-        
+
         #Shutdown button
         self.shutdown = gtk.Button("_Power off")
         self.shutdown.set_border_width(4)
         self.shutdown.connect("clicked", self.shutdown_action)
         self.button_box.pack_start(self.shutdown)
         self.shutdown.show()
-        
+
         self.window.add(self.button_box)
         self.window.show()
-        
+
     def __init__(self):
         self.create_window()
 
